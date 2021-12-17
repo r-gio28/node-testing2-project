@@ -1,15 +1,16 @@
 const router = require('express').Router()
 
+const Joke = require("./jokesModel")
 
 
 
-// router.use((err, req, res, next) => { // eslint-disable-line
-//     res.status(500).json({
-//         customMessage: 'something went wrong inside the jokes router',
-//         message: err.message,
-//         stack: err.stack,
-//     })
-// })
+router.delete("/:id", async (req, res) => {
+    const id = req.params.id
+    const delJoke = await Joke.deleteJoke(id)
+    res.status(200).json(delJoke)
+}) 
+
+
 
 
 module.exports = router

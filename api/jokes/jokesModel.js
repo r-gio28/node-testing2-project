@@ -5,6 +5,13 @@ async function createJoke(joke) {
     return db("jokes").where("joke_id",id).first()
 }
 
+async function deleteJoke(id) {
+    const joke = await db("jokes").where("joke_id", id).first()
+    await db("jokes").where("joke_id", id).del()
+    return joke
+}
+
 module.exports = {
-    createJoke
+    createJoke,
+    deleteJoke
 }
